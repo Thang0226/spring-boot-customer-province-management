@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.model.Customer;
+import com.model.DTO.ProvinceDTO;
 import com.model.Province;
 import com.service.ICustomerService;
 import com.service.IProvinceService;
@@ -64,18 +65,12 @@ public class ProvinceController {
         return "redirect:/provinces";
     }
 
-    @GetMapping("/view-province/{id}")
-    public ModelAndView viewProvince(@PathVariable("id") Long id){
-        Optional<Province> provinceOptional = provinceService.findById(id);
-        if(!provinceOptional.isPresent()){
-            return new ModelAndView("error_404");
-        }
-
-        Iterable<Customer> customers = customerService.findAllByProvince(provinceOptional.get());
-
-        ModelAndView modelAndView = new ModelAndView("customer/list");
-        modelAndView.addObject("customers", customers);
-        return modelAndView;
+    @GetMapping("/count")
+    public ModelAndView viewProvinceWithCustomerCount(){
+        Iterable<ProvinceDTO> items = provinceService.countCustomerByProvince();
+        ModelAndView mv = new ModelAndView("province/count");
+        mv.addObject("provinces", items);
+        return mv;
     }
 
     @GetMapping("/delete/{id}")

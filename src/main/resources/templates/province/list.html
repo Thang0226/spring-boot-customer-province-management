@@ -11,8 +11,13 @@
   </a>
 </p>
 <p>
+  <a th:href="@{/provinces/count}" th:text="#{provinces.count}">
+    Customers Count
+  </a>
+</p>
+<p>
   <a th:href="@{/customers}" th:text="#{customers.title}">
-    Customers
+    Customers List
   </a>
 </p>
 <div class="notify">
@@ -33,7 +38,7 @@
   <tbody>
   <tr th:each="p, pStatus : ${provinces}">
     <td th:text="${pStatus.count}"></td>
-    <td><a th:href="@{/provinces/view-province/__${p.id}__}" th:text="${p.getName()}"></a></td>
+    <td><a href="#" th:text="${p.getName()}"></a></td>
     <td><a th:href="@{/provinces/update/{id}(id=${p.getId()})}" th:text="#{provinces.update}">update</a></td>
     <td><a th:href="@{/provinces/delete/__${p.id}__}" th:text="#{provinces.delete}">delete</a></td>
   </tr>

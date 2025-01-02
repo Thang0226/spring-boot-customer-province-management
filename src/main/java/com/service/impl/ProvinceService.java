@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import com.model.DTO.ProvinceDTO;
 import com.model.Province;
 import com.repository.IProvinceRepository;
 import com.service.IProvinceService;
@@ -31,5 +32,10 @@ public class ProvinceService implements IProvinceService {
     @Override
     public void remove(Long id) {
         iProvinceRepository.deleteProvince(id);
+    }
+
+    @Override
+    public Iterable<ProvinceDTO> countCustomerByProvince() {
+        return iProvinceRepository.countCustomerByProvince();
     }
 }

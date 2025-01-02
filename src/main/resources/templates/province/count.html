@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+  <title>List Province</title>
+</head>
+<body>
+<h3 th:text="#{provinces.title}">Provinces</h3>
+<p>
+  <a th:href="@{/customers}" th:text="#{customers.title}">
+    Customers List
+  </a>
+</p>
+<p>
+  <a th:href="@{/provinces}">
+    Back to province list
+  </a>
+</p>
+
+<table id = "list">
+  <thead>
+  <tr>
+    <th th:text="#{provinces.number}">No.</th>
+    <th th:text="#{provinces.name}">Name</th>
+    <th th:text="#{provinces.customer.count}">Customer count</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="p, pStatus : ${provinces}">
+    <td th:text="${pStatus.count}"></td>
+    <td th:text="${p.name}"></td>
+    <td th:text="${p.count}"></td>
+  </tr>
+  </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
