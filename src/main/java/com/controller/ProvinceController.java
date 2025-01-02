@@ -56,7 +56,7 @@ public class ProvinceController {
         }
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/update")
     public String update(@ModelAttribute("province") Province province,
                          RedirectAttributes redirect) {
         provinceService.save(province);
@@ -68,7 +68,7 @@ public class ProvinceController {
     public ModelAndView viewProvince(@PathVariable("id") Long id){
         Optional<Province> provinceOptional = provinceService.findById(id);
         if(!provinceOptional.isPresent()){
-            return new ModelAndView("/error_404");
+            return new ModelAndView("error_404");
         }
 
         Iterable<Customer> customers = customerService.findAllByProvince(provinceOptional.get());
@@ -82,7 +82,7 @@ public class ProvinceController {
     public String deleteProvince(@PathVariable("id") Long id){
         Optional<Province> provinceOptional = provinceService.findById(id);
         if(!provinceOptional.isPresent()){
-            return "/error_404";
+            return "error_404";
         }
         provinceService.remove(id);
         return "redirect:/provinces";

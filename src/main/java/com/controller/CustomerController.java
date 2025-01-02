@@ -41,7 +41,7 @@ public class CustomerController {
         } else {
             customers = customerService.findAll(pageable);
         }
-        ModelAndView modelAndView = new ModelAndView("/customer/list");
+        ModelAndView modelAndView = new ModelAndView("customer/list");
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }
@@ -69,7 +69,7 @@ public class CustomerController {
             modelAndView.addObject("customer", customer.get());
             return modelAndView;
         } else {
-            return new ModelAndView("/error_404");
+            return new ModelAndView("error_404");
         }
     }
 

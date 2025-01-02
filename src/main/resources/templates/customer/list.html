@@ -49,7 +49,11 @@
         <td th:text="${cStatus.count}"></td>
         <td th:text="${c.getFirstName()}"></td>
         <td th:text="${c.getLastName()}"></td>
-        <td th:text="${c.getProvince().getName()}"></td>
+        <td>
+            <th:block th:if="${c.province}">
+                <span th:text="${c.getProvince().getName()}"></span>
+            </th:block>
+        </td>
         <td><a th:href="@{/customers/update/{id}(id=${c.getId()})}" th:text="#{customers.update}">update</a></td>
         <td><a th:href="@{/customers/delete/{id}(id=${c.getId()})}" th:text="#{customers.delete}">delete</a></td>
     </tr>
