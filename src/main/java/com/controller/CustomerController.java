@@ -33,7 +33,8 @@ public class CustomerController {
     @GetMapping
     public ModelAndView listCustomers(
             @PageableDefault(size = 3, sort = "firstName", direction = Sort.Direction.ASC) Pageable pageable,
-            @RequestParam("search") Optional<String> search) {
+            @RequestParam(value = "search") Optional<String> search,
+            @RequestParam(defaultValue = "0") int page) {
         Page<Customer> customers;
 
         if(search.isPresent()){
@@ -43,6 +44,8 @@ public class CustomerController {
         }
         ModelAndView modelAndView = new ModelAndView("customer/list");
         modelAndView.addObject("customers", customers);
+        modelAndView.addObject("search", search.orElse(""));
+        modelAndView.addObject("page", page);
         return modelAndView;
     }
 

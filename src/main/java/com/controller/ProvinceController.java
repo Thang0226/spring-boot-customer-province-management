@@ -25,7 +25,7 @@ public class ProvinceController {
     @GetMapping
     public ModelAndView listProvince() {
         ModelAndView modelAndView = new ModelAndView("province/list");
-        Iterable<Province> provinces = provinceService.findAll();
+        Iterable<ProvinceDTO> provinces = provinceService.countCustomerByProvince();
         modelAndView.addObject("provinces", provinces);
         return modelAndView;
     }
