@@ -38,13 +38,14 @@ public class CustomerController {
         Page<Customer> customers;
 
         if(search.isPresent()){
-            customers = customerService.findAllByFirstNameContaining(pageable, search.get());
+//            customers = customerService.findAllByFirstNameContaining(pageable, search.get());
+            customers = customerService.findAllByFullNameContaining(search.get(), pageable);
         } else {
             customers = customerService.findAll(pageable);
         }
         ModelAndView modelAndView = new ModelAndView("customer/list");
         modelAndView.addObject("customers", customers);
-        modelAndView.addObject("search", search.orElse(""));
+        modelAndView.addObject("search", search.orElse(null));
         modelAndView.addObject("page", page);
         return modelAndView;
     }

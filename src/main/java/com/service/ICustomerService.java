@@ -11,4 +11,6 @@ public interface ICustomerService extends IService<Customer> {
     Page<Customer> findAll(Pageable pageable);
 
     Page<Customer> findAllByFirstNameContaining(Pageable pageable, String name);
+
+    Page<Customer> findAllByFullNameContaining(String text, Pageable pageable);
 }
