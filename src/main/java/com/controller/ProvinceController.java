@@ -65,14 +65,6 @@ public class ProvinceController {
         return "redirect:/provinces";
     }
 
-    @GetMapping("/count")
-    public ModelAndView viewProvinceWithCustomerCount(){
-        Iterable<ProvinceDTO> items = provinceService.countCustomerByProvince();
-        ModelAndView mv = new ModelAndView("province/count");
-        mv.addObject("provinces", items);
-        return mv;
-    }
-
     @GetMapping("/delete/{id}")
     public String deleteProvince(@PathVariable("id") Long id){
         Optional<Province> provinceOptional = provinceService.findById(id);
